@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJMAX Respect V - Rhythm Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Main Menu -->
+        <div id="mainMenu" class="menu-container">
+            <div class="menu-content">
+                <h1 class="game-title">DJMAX RESPECT V</h1>
+                <button class="menu-button" onclick="showStageSelect()">Start Game</button>
+                <button class="menu-button" onclick="showSettings()">Settings</button>
+                <button class="menu-button" onclick="showControls()">Controls</button>
+            </div>
+        </div>
+
+        <!-- Stage Selection -->
+        <div id="stageSelect" class="menu-container hidden">
+            <div class="menu-content">
+                <h2>Select Stage</h2>
+                <div class="stage-grid" id="stageGrid"></div>
+                <button class="menu-button back-button" onclick="showMainMenu()">Back</button>
+            </div>
+        </div>
+
+        <!-- Settings Menu -->
+        <div id="settingsMenu" class="menu-container hidden">
+            <div class="menu-content settings-content">
+                <h2>Settings</h2>
+                
+                <div class="settings-section">
+                    <h3>Input Timing</h3>
+                    <label>Perfect Timing Window (ms):</label>
+                    <input type="range" id="perfectWindow" min="20" max="200" value="100" class="slider">
+                    <span id="perfectWindowValue">100</span>ms
+                    
+                    <label>Great Timing Window (ms):</label>
+                    <input type="range" id="greatWindow" min="50" max="300" value="150" class="slider">
+                    <span id="greatWindowValue">150</span>ms
+                    
+                    <label>Good Timing Window (ms):</label>
+                    <input type="range" id="goodWindow" min="100" max="500" value="250" class="slider">
+                    <span id="goodWindowValue">250</span>ms
+                </div>
+
+                <div class="settings-section">
+                    <h3>Game Settings</h3>
+                    <label>
+                        <input type="checkbox" id="soundEnabled" checked>
+                        Sound Effects
+                    </label>
+                    <label>
+                        <input type="checkbox" id="particlesEnabled" checked>
+                        Visual Effects
+                    </label>
+                    <label>
+                        <input type="checkbox" id="showHitFeedback" checked>
+                        Hit Feedback
+                    </label>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Auto-Calibrate (Real-time)</h3>
+                    <p>Press keys when you see notes to auto-calibrate timing</p>
+                    <button class="menu-button" onclick="startAutoCalibrate()">Start Auto-Calibrate</button>
+                    <div id="calibrateStatus"></div>
+                </div>
+
+                <button class="menu-button back-button" onclick="showMainMenu()">Back</button>
+            </div>
+        </div>
+
+        <!-- Controls Menu -->
+        <div id="controlsMenu" class="menu-container hidden">
+            <div class="menu-content">
+                <h2>Controls</h2>
+                <div class="controls-list">
+                    <p><strong>Lane 1:</strong> D</p>
+                    <p><strong>Lane 2:</strong> F</p>
+                    <p><strong>Lane 3:</strong> Space</p>
+                    <p><strong>Lane 4:</strong> J</p>
+                    <p><strong>Lane 5:</strong> K</p>
+                    <p><strong>Pause/Resume:</strong> P or ESC</p>
+                </div>
+                <button class="menu-button back-button" onclick="showMainMenu()">Back</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="game-screen hidden">
+            <div class="game-hud">
+                <div class="stage-name" id="stageName"></div>
+                <div class="score-display">
+                    <div class="score-info">
+                        <span>Score:</span>
+                        <span id="score" class="score-value">0</span>
+                    </div>
+                    <div class="combo-info">
+                        <span>Combo:</span>
+                        <span id="combo" class="combo-value">0</span>
+                    </div>
+                </div>
+                <div class="accuracy-display">
+                    <span>Accuracy:</span>
+                    <span id="accuracy" class="accuracy-value">0%</span>
+                </div>
+            </div>
+
+            <div class="game-container">
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
+            </div>
+
+            <div id="pauseMenu" class="pause-menu hidden">
+                <div class="pause-content">
+                    <h2>Paused</h2>
+                    <button class="menu-button" onclick="resumeGame()">Resume (P)</button>
+                    <button class="menu-button" onclick="exitGame()">Exit (ESC)</button>
+                </div>
+            </div>
+
+            <div id="resultScreen" class="result-screen hidden">
+                <div class="result-content">
+                    <h2 id="resultTitle">Stage Clear!</h2>
+                    <div class="result-stats">
+                        <p><span>Final Score:</span> <span id="finalScore">0</span></p>
+                        <p><span>Final Combo:</span> <span id="finalCombo">0</span></p>
+                        <p><span>Final Accuracy:</span> <span id="finalAccuracy">0%</span></p>
+                        <p><span>Perfect:</span> <span id="resultPerfect">0</span></p>
+                        <p><span>Great:</span> <span id="resultGreat">0</span></p>
+                        <p><span>Good:</span> <span id="resultGood">0</span></p>
+                        <p><span>Missed:</span> <span id="resultMissed">0</span></p>
+                    </div>
+                    <div class="result-buttons">
+                        <button class="menu-button" onclick="showStageSelect()">Back to Stages</button>
+                        <button class="menu-button" onclick="showMainMenu()">Main Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
