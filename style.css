@@ -1,0 +1,434 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    overflow: hidden;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Menu Styles */
+.menu-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    transition: opacity 0.3s;
+}
+
+.menu-container.hidden {
+    display: none;
+}
+
+.menu-content {
+    text-align: center;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-title {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #00d4ff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.menu-button {
+    display: block;
+    width: 250px;
+    padding: 15px 30px;
+    margin: 15px auto;
+    background: linear-gradient(45deg, #00d4ff, #0099ff);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.menu-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+}
+
+.menu-button:active {
+    transform: translateY(-1px);
+}
+
+.back-button {
+    width: 150px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 30px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #00d4ff;
+}
+
+h3 {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #00d4ff;
+}
+
+/* Stage Selection */
+.stage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+    max-width: 800px;
+}
+
+.stage-card {
+    padding: 20px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 2px solid #00d4ff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.stage-card:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.stage-card h3 {
+    margin: 0 0 10px 0;
+}
+
+.stage-difficulty {
+    font-size: 0.9rem;
+    color: #ffaa00;
+}
+
+/* Settings */
+.settings-content {
+    max-width: 600px;
+    text-align: left;
+}
+
+.settings-section {
+    background: rgba(0, 212, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #00d4ff;
+}
+
+.settings-section label {
+    display: block;
+    margin: 15px 0 8px 0;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.settings-section input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #0099ff, #00d4ff);
+    outline: none;
+    -webkit-appearance: none;
+    margin: 10px 0;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00d4ff;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00d4ff;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+#calibrateStatus {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(255, 170, 0, 0.2);
+    border-left: 3px solid #ffaa00;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+.controls-list {
+    font-size: 1.1rem;
+    text-align: left;
+    display: inline-block;
+    background: rgba(0, 212, 255, 0.1);
+    padding: 30px;
+    border-radius: 8px;
+    border-left: 4px solid #00d4ff;
+}
+
+.controls-list p {
+    margin: 15px 0;
+}
+
+/* Game Screen */
+.game-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+}
+
+.game-screen.hidden {
+    display: none;
+}
+
+.game-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid #00d4ff;
+}
+
+.stage-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00d4ff;
+}
+
+.score-display {
+    display: flex;
+    gap: 40px;
+}
+
+.score-info, .combo-info {
+    display: flex;
+    gap: 10px;
+    font-size: 1.2rem;
+}
+
+.score-value, .combo-value, .accuracy-value {
+    color: #ffaa00;
+    font-weight: bold;
+}
+
+.accuracy-display {
+    font-size: 1.2rem;
+    display: flex;
+    gap: 10px;
+}
+
+.game-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+}
+
+#gameCanvas {
+    max-width: 100%;
+    max-height: 100%;
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+    border: 2px solid #00d4ff;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+/* Pause Menu */
+.pause-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.pause-menu.hidden {
+    display: none;
+}
+
+.pause-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px solid #00d4ff;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.pause-content h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Result Screen */
+.result-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.result-screen.hidden {
+    display: none;
+}
+
+.result-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px solid #00d4ff;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.4);
+    animation: slideIn 0.3s ease-out;
+}
+
+.result-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.result-stats {
+    text-align: left;
+    background: rgba(0, 212, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border-left: 4px solid #00d4ff;
+}
+
+.result-stats p {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 1.1rem;
+}
+
+.result-stats span:first-child {
+    color: #00d4ff;
+}
+
+.result-stats span:last-child {
+    color: #ffaa00;
+    font-weight: bold;
+}
+
+.result-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.result-buttons .menu-button {
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .game-title {
+        font-size: 2.5rem;
+    }
+
+    .game-hud {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .score-display {
+        gap: 20px;
+    }
+
+    .stage-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .stage-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .controls-list {
+        font-size: 0.9rem;
+        padding: 20px;
+    }
+
+    .result-stats p {
+        font-size: 0.95rem;
+    }
+}
